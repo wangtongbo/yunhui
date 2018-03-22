@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.UserLoadMapper">
+
+	<insert id="addUserLoad" parameterType="com.lakala.ls.ms.domain.UserLoad">
+        insert into userload (
+       	userid,
+       	productid,
+       	platform,
+       	pagetype,
+       	ip,
+        createtime     
+        )values (
+        #{userid},
+        #{productId},
+        #{platform},
+        #{pagetype},
+        #{ip},
+        now()
+         )
+    </insert>
+    
+    
+    
+      <resultMap id="loadResult" type="com.lakala.ls.ms.domain.UserLoad">
+        <result property="id" column="id" />
+        <result property="userid" column="userid" />
+        <result property="productId" column="productid" />
+        <result property="productName" column="name" />
+        <result property="platform" column="platform" />
+        <result property="pagetype" column="pagetype" />
+        <result property="ip" column="ip" />
+        <result property="createTime" column="createtime" />
+        <result property="loadDate" column="loadDate" />
+    </resultMap>
+
+    <select id="queryUserLoads" resultMap="loadResult" >
+        select a.*,DATE_FORMAT(a.createtime,'%Y%m%d') as loadDate ,b.name  from userload a left JOIN  product b on a.productid =b.id where  1=1 and
+        <![CDATA[ a.createtime>=#{0} and a.createtime<=#{1} ]]>     
+    </select>
+
+    
+</mapper>

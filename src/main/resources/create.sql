@@ -1,0 +1,33 @@
+CREATE TABLE `role` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+  `name` VARCHAR(45) NOT NULL COMMENT '角色名称',
+  `rolecode` VARCHAR(45) NOT NULL COMMENT '角色编码',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `teller` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tellername` VARCHAR(16) NOT NULL COMMENT '操作员名称',
+  `password` VARCHAR(64) DEFAULT NULL COMMENT '密码',
+  `aliasname` VARCHAR(32) DEFAULT NULL COMMENT '别名',
+  `mobile` VARCHAR(15) DEFAULT NULL COMMENT '手机号',
+  `telphone` VARCHAR(15) DEFAULT NULL COMMENT '手机号',
+  `email` VARCHAR(32) DEFAULT NULL COMMENT '邮箱',
+  `createtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `state` CHAR(10) NOT NULL COMMENT '状态',
+  `department` VARCHAR(512) DEFAULT NULL COMMENT '部门',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tellername_UNIQUE` (`tellername`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tellerrole` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `createtime` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `roleid` INT(11) DEFAULT NULL COMMENT '角色ID',
+  `tellerid` INT(11) DEFAULT NULL COMMENT '操作员ID',
+  PRIMARY KEY (`id`),
+  KEY `fk_tellerrole_role` (`roleid`),
+  KEY `fk_tellerrole_teller` (`tellerid`),
+  CONSTRAINT `fk_tellerrole_role` FOREIGN KEY (`roleid`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tellerrole_teller` FOREIGN KEY (`tellerid`) REFERENCES `teller` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=INNODB DEFAULT CHARSET=utf8;

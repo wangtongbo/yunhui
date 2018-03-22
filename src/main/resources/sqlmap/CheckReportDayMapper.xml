@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.CheckReportDayMapper">
+
+    <insert id="saveCheckReportDayList" parameterType="java.util.HashMap">
+        insert ignore into check_report_day (
+            report_date,
+            product_id,
+            apply_click_nser_num,
+            apply_click_num,
+            day_loan_bill_num,
+            day_loan_user_num,
+            new_loan_success_bill_num,
+            again_loan_success_bill_num,
+            new_loan_success_user_num,
+            again_loan_success_user_num,
+            new_loan_success_amount_num,
+            again_loan_success_amount_num,
+            new_share_benefit_amount_num,
+            again_share_benefit_amount_num
+        )
+        values
+        <foreach collection="reportDayList" item="record" index="index" separator=",">
+            (
+            #{record.reportDate},
+            #{record.productId},
+            #{record.applyClickUserNum},
+            #{record.applyClickNum},
+            #{record.dayLoanBillNum},
+            #{record.dayLoanUserNum},
+            #{record.newLoanSuccessBillNum},
+            #{record.againLoanSuccessBillNum},
+            #{record.newLoanSuccessUserNum},
+            #{record.againLoanSuccessUserNum},
+            #{record.newLoanSuccessAmountNum},
+            #{record.againLoanSuccessAmountNum},
+            #{record.newShareBenefitAmountNum},
+            #{record.againShareBenefitAmountNum})
+        </foreach>
+    </insert>
+
+    <select id="queryCheckReportDayList" parameterType="java.util.HashMap"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+        select
+            t1.report_date as reportDate,
+            t1.product_id as productId,
+            t2.name as productName,
+            t1.apply_click_user_num as applyClickUserNum,
+            t1.apply_click_num as applyClickNum,
+            t1.day_loan_bill_num as dayLoanBillNum,
+            t1.day_loan_user_num as dayLoanUserNum,
+            t1.new_loan_success_bill_num as newLoanSuccessBillNum,
+            t1.again_loan_success_bill_num as againLoanSuccessBillNum,
+            t1.new_loan_success_user_num as newLoanSuccessUserNum,
+            t1.again_loan_success_user_num as againLoanSuccessUserNum,
+            t1.new_loan_success_amount_num as newLoanSuccessAmountNum,
+            t1.again_loan_success_amount_num as againLoanSuccessAmountNum,
+            t1.new_share_benefit_amount_num as newShareBenefitAmountNum,
+            t1.again_share_benefit_amount_num as againShareBenefitAmountNum
+        from check_report_day t1, product t2
+        where t1.product_id = t2.id
+          and report_date = #{reportDate}
+        ORDER by product_id asc;
+    </select>
+
+    <select id="countLoanBillNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select product_id as productId, count(0) as dayLoanBillNum
+        from check_loan_apply
+        where clear_date = #{clearDate}
+        group by product_id
+    </select>
+
+    <select id="countLoanUserNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, count(0) as dayLoanUserNum
+        from (select DISTINCT product_id, user_id from check_loan_apply) t1
+        where clear_date = #{clearDate}
+        group by t1.product_id
+    </select>
+
+    <select id="countNewLoanSuccessNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, count(0) as newLoanSuccessBillNum
+        from check_loan_apply t1
+        where clear_date = #{clearDate}
+	      and t1.first_success_loan_flag = '1'
+        group by t1.product_id
+    </select>
+
+    <select id="countAgainLoanSuccessNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, count(0) as againLoanSuccessBillNum
+        from check_loan_apply t1
+        where clear_date = #{clearDate}
+	      and t1.first_success_loan_flag = '0'
+        group by t1.product_id
+    </select>
+
+    <select id="countNewUserSuccessNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, count(0) as newLoanSuccessUserNum
+        from (select DISTINCT product_id, user_id from check_loan_apply
+                where first_success_loan_flag = '1') t1
+        where clear_date = #{clearDate}
+        group by t1.product_id
+    </select>
+
+    <select id="countAgainUserSuccessNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, count(0) as againLoanSuccessUserNum
+        from (select DISTINCT product_id, user_id from check_loan_apply
+                where first_success_loan_flag = '0') t1
+        where clear_date = #{clearDate}
+        group by t1.product_id
+    </select>
+
+    <select id="countNewLoanSuccessAmountNum" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+        select t1.product_id as productId, sum(t1.loan_amount) as newLoanSuccessAmountNum
+        from check_clear_merchant t1
+        where t1.clear_date = #{clearDate}
+        and t1.first_success_loan_flag = '1'
+        group by t1.product_id
+    </select>
+
+    <select id="countAgainLoanSuccessAmountNum" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+        select t1.product_id as productId, sum(t1.loan_amount) as againLoanSuccessAmountNum
+        from check_clear_merchant t1
+        where t1.clear_date = #{clearDate}
+        and t1.first_success_loan_flag = '0'
+        group by t1.product_id
+    </select>
+
+    <select id="countNewLoanProfitNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, sum(t1.share_benefit_amount) as newShareBenefitAmountNum
+        from check_clear_merchant t1
+        where t1.clear_date = #{clearDate}
+          and t1.first_success_loan_flag = '1'
+        group by t1.product_id
+    </select>
+
+    <select id="countAgainLoanProfitNumByProduct" parameterType="java.lang.String"
+            resultType="com.lakala.ls.ms.dto.CheckRepotDayDTO">
+      select t1.product_id as productId, sum(t1.share_benefit_amount) as newShareBenefitAmountNum
+        from check_clear_merchant t1
+        where t1.clear_date = #{clearDate}
+          and t1.first_success_loan_flag = '0'
+        group by t1.product_id
+    </select>
+
+</mapper>

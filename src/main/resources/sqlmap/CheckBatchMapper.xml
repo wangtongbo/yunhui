@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.CheckBatchMapper">
+
+    <insert id="insertCheckBatch" parameterType="com.lakala.ls.ms.dto.CheckBatchDTO">
+        insert into check_batch (batch_id, clear_date, state)
+        values(#{batchId},#{clearDate},#{state})
+    </insert>
+
+    <delete id="deleteCheckBatch" parameterType="com.lakala.ls.ms.dto.CheckBatchDTO">
+        delete from check_batch
+        where clear_date = #{clearDate}
+    </delete>
+
+    <update id="updateCheckBatch" parameterType="com.lakala.ls.ms.dto.CheckBatchDTO">
+        update check_batch
+          set state = #{state}
+        where batch_id = #{batchId}
+    </update>
+
+</mapper>

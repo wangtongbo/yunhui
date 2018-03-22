@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.AppContentMapper">
+
+    <resultMap id="contentResult" type="com.lakala.ls.ms.domain.AppContent">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="type" column="type" />
+        <result property="state" column="state" />
+        <result property="imgurl" column="imgurl" />
+        <result property="addr" column="addr" />
+        <result property="rank" column="rank" />
+        <result property="productid" column="productid" />
+        <result property="productname" column="productname" />
+        <result property="createTime" column="createtime" />
+        <result property="updateTime" column="updatetime" />
+    </resultMap>
+
+	 <select id="queryAppContents"   resultMap="contentResult">
+	 
+	 SELECT a.*,b.name as productname  FROM  appcontent a  LEFT JOIN  product b on a.productid =b.id 
+     order by createtime desc
+    </select>
+
+	<select id="queryUserAppContents"   resultMap="contentResult">
+        select * from appcontent where type=#{type}
+        order by rank
+    </select>
+    <select id="queryProductContents"   resultMap="contentResult">
+        select * from appcontent where type=#{0} and productid=#{1}  order by rank
+    </select>
+
+
+    <insert id="addAppContent" parameterType="com.lakala.ls.ms.domain.AppContent">
+        insert into appcontent (
+        name,
+        type,
+        state,
+        imgurl,
+        addr,
+        rank,
+        productid,
+        createtime,
+        updatetime
+        )values (
+        #{name},
+        #{type},
+        #{state},
+        #{imgurl},
+        #{addr},
+        #{rank},
+        #{productid},
+        now(),
+        now()
+         )
+    </insert>
+   
+    
+    <update id="updateAppContentState">
+    update appcontent set state=#{1},updatetime=now() where id=#{0}
+    </update>
+    
+    <delete id="deleteAppContent">
+    	delete from  appcontent where id=#{channelid}
+    </delete>
+    
+    
+</mapper>

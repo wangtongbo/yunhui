@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.MerchantMapper">
+
+    <insert id="saveMerchant" parameterType="com.lakala.ls.ms.dto.MerchantDTO">
+        insert into merchant (
+            id,
+            name,
+            description,
+            contact_name,
+            contact_tel,
+            state,
+            create_time,update_time
+        )values (
+            #{merchantId},
+            #{merchantName},
+            #{description},
+            #{contactName},
+            #{contactTel},
+            #{state},
+            now(),
+            now()
+        )
+    </insert>
+
+    <select id="queryMerchantList" parameterType="java.util.HashMap" resultType="com.lakala.ls.ms.dto.MerchantDTO">
+        select a.id as merchantId,
+          a.name as merchantName,
+          a.description,
+          a.contact_name as contactName,
+          a.contact_tel as contactTel,
+          a.state,
+          a.create_time as createTime,
+          a.update_time as updateTime,
+          b.productCount
+        from merchant a left join(
+      	  select merchantid, count(merchantid) as productCount from product group by merchantid
+        )b on a.id=b.merchantid
+        where 1 = 1
+        <if test="merchantName != null and merchantName != ''">
+            a.name like CONCAT('%', #{merchantName}, '%')
+        </if>
+    </select>
+
+    <update id="updateMerchantState" parameterType="com.lakala.ls.ms.dto.MerchantDTO">
+        update merchant set state=#{state},update_time=now()  where id =#{merchantId}
+    </update>
+    
+    <update id="updateMerchant" parameterType="com.lakala.ls.ms.dto.MerchantDTO">
+    	update merchant 
+    	<set>
+			<if test="merchantName != null">
+				name = #{merchantName},
+			</if>
+			<if test="contactName != null">
+				contact_name = #{contactName},
+			</if>
+			<if test="contactTel != null">
+				contact_tel = #{contactTel},
+			</if>
+				update_time=now()
+			</set>
+    	
+    	 where id =#{merchantId}
+    	
+    </update>
+    
+</mapper>

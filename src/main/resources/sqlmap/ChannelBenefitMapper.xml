@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.ChannelBenefitMapper">
+
+
+    <insert id="addChannelBenefit" parameterType="com.lakala.ls.ms.domain.ChannelBenefit">
+        insert into channel_share_benefit (
+        channel_id,
+        product_id,
+        rate,
+        create_time,
+        update_time
+        )values (
+        #{channelId},
+        #{productId},
+        #{rate},
+        now(),
+        now()
+         )
+    </insert>
+    
+    
+    <resultMap id="channelBenefitResult" type="com.lakala.ls.ms.domain.ChannelBenefit">
+        <result property="channelId" column="channel_id" />
+        <result property="productId" column="product_id" />
+        <result property="rate" column="rate" />
+    </resultMap>
+
+	 <select id="queryChannelBenefitByChannelId"   resultMap="channelBenefitResult">
+        select
+        channel_id,product_id,rate
+        from channel_share_benefit
+        where channel_id=#{channelid}
+    </select>
+    
+    <delete id="deleteChannelBenefit">
+    delete  from channel_share_benefit
+        where channel_id=#{channelid}
+    </delete>
+    
+    
+</mapper>

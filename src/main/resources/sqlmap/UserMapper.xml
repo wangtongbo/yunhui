@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.UserMapper">
+
+     <resultMap id="userResult" type="com.lakala.ls.ms.domain.User">
+        <result property="id" column="id" />
+        <result property="userName" column="tellername" />
+        <result property="password" column="password" />
+        <result property="aliasName" column="aliasname" />
+        <result property="mobile" column="mobile" />
+        <result property="telphone" column="telphone" />
+        <result property="state" column="state" />
+        <result property="department" column="department" />
+    </resultMap>
+
+    <select id="loadUserByName"  parameterType="java.lang.String" resultMap="userResult">
+        SELECT tellername,password,id FROM teller WHERE tellername
+        =
+        #{username}
+    </select>
+
+    <insert id="add" parameterType="com.lakala.ls.ms.domain.User">
+        insert into teller (tellername,password,state,aliasName,email,department)
+        values (#{userName}, #{password},#{state},#{aliasName},#{email},#{department})
+    </insert>
+    
+    <update id="update" parameterType="com.lakala.ls.ms.domain.User">
+	    update teller 
+		<set>
+		 <if test="password != null and password != ''">password = #{password},</if>
+		 <if test="aliasName != null and aliasName != ''">aliasName = #{aliasName},</if>
+		 <if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
+		 <if test="email != null and email != ''">email = #{email},</if>
+		 <if test="state != null and state != ''">state = #{state},</if>
+		 <if test="department != null and department != ''">department = #{department},</if>
+         updatetime = now()
+		</set>
+		where tellername = #{userName}
+	</update>
+
+    <select id="queryAll" resultMap="userResult">
+        select tellername,id,aliasname,mobile,telphone,email,state,department from teller;
+    </select>
+    
+    <delete id="delete" parameterType="com.lakala.ls.ms.domain.User">
+        delete from teller where tellername = #{userName}
+    </delete>
+
+
+</mapper>

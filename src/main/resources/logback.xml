@@ -1,0 +1,51 @@
+<configuration>
+
+    <jmxConfigurator />
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+
+
+    <appender name="LOG_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{requestId} %X{userId} %logger - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="LOG_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/%d{yyyy-MM-dd}/logFile.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 			<maxHistory>30</maxHistory> -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{requestId} %X{sessionId} %logger - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger level="INFO" additivity="false" name="org.springframework.jdbc.datasource.DataSourceUtils">
+        <appender-ref ref="LOG_FILE" />
+    </logger>
+
+    <logger level="INFO" additivity="false" name="org.springframework.jdbc.core.JdbcTemplate">
+        <appender-ref ref="LOG_FILE" />
+    </logger>
+    <logger level="DEBUG" additivity="false" name="org.springframework.web.client.RestTemplate">
+        <appender-ref ref="LOG_FILE" />
+    </logger>
+    <logger level="DEBUG" additivity="false" name="org.springframework.web">
+        <appender-ref ref="LOG_FILE" />
+    </logger>
+
+
+    <root level="info">
+        <appender-ref ref="LOG_FILE" />
+        <appender-ref ref="LOG_STDOUT" />
+    </root>
+
+</configuration>

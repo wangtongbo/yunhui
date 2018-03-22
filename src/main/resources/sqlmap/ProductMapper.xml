@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.ProductMapper">
+
+
+    <insert id="addProduct" parameterType="com.lakala.ls.ms.domain.Product">
+        insert into product (
+        name,
+        categoryid,
+        title,
+        description,
+        imgurl,
+        score,
+        level,
+        type,
+        loadaddr,
+        state,
+        version,
+        rank,
+        merchantid,
+        dimension,
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        createtime,
+        updatetime
+        )values (
+        #{productName},
+        #{categoryid},
+        #{productTitle},
+        #{description},
+        #{imgurl},
+        #{score},
+        #{level},
+        #{type},
+        #{addr},
+        #{state},
+        #{version},
+         #{rank},
+         #{merchantId},
+         #{dimension},
+         #{img1},
+         #{img2},
+         #{img3},
+         #{img4},
+         #{img5},
+        now(),
+        now()
+         )
+    </insert>
+    
+    <update id="updateProduct" parameterType="com.lakala.ls.ms.domain.Product">
+    	update product 
+    	<set>
+			<if test="productName != null">
+				name = #{productName},
+			</if>
+			<if test="categoryid != null">
+				categoryid = #{categoryid},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="productTitle != null">
+				title = #{productTitle},
+			</if>
+			<if test="score != null">
+				score = #{score},
+			</if>
+			<if test="level != null">
+				level = #{level},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="imgurl != null">
+				imgurl = #{imgurl},
+			</if>
+			<if test="addr != null">
+				loadaddr = #{addr},
+			</if>
+			<if test="version != null">
+				version = #{version},
+			</if>
+			<if test="rank != null">
+				rank = #{rank},
+			</if>
+			<if test="dimension != null">
+				dimension = #{dimension},
+			</if>
+			<if test="merchantId != null">
+				merchantid = #{merchantId},
+			</if>
+			
+			<if test="img1 != null">
+				img1 = #{img1},
+			</if>
+			<if test="img2 != null">
+				img2 = #{img2},
+			</if>
+			<if test="img3 != null">
+				img3 = #{img3},
+			</if>
+			<if test="img4 != null">
+				img4 = #{img4},
+			</if>
+			<if test="img5 != null">
+				img5 = #{img5},
+			</if>
+			updatetime = now()
+			</set>
+    		
+    	 where id =#{id}
+    	
+    </update>
+    
+    
+    <resultMap id="productResult" type="com.lakala.ls.ms.domain.Product">
+        <result property="id" column="id" />
+        <result property="productName" column="name" />
+        <result property="categoryid" column="categoryid" />
+        <result property="productTitle" column="title" />
+        <result property="description" column="description" />
+        <result property="score" column="score" />
+        <result property="level" column="level" />
+        <result property="type" column="type" />
+        <result property="imgurl" column="imgurl" />
+        <result property="addr" column="loadaddr" />
+        <result property="state" column="state" />
+        <result property="version" column="version" />
+        <result property="rank" column="rank" />
+        <result property="merchantId" column="merchantid" />
+        <result property="dimension" column="dimension" />
+        <result property="img1" column="img1" />
+        <result property="img2" column="img2" />
+        <result property="img3" column="img3" />
+        <result property="img4" column="img4" />
+        <result property="img5" column="img5" />
+        <result property="createTime" column="createtime" />
+        <result property="updateTime" column="updatetime" />
+    </resultMap>
+
+	 <select id="queryProducts"   resultMap="productResult" parameterType="com.lakala.ls.ms.dto.DatePageRequest">
+	 
+	 select * from product where 1=1 
+	 <if test="categoryid != null and categoryid !='' ">
+		 and categoryid=#{categoryid}
+	 </if>
+	   order by updatetime desc 
+	 <if test="pageSize > 0">
+            limit #{pageIndex}, #{pageSize}
+        </if>
+      </select>
+      
+      <select id="listProductsCount"  resultType="java.lang.Integer">
+      select count(0)from product 
+      where 1=1 
+	 <if test="categoryid != null and categoryid !='' ">
+		 and categoryid=#{categoryid}
+	 </if>
+      order by updatetime desc 
+      </select>
+    
+   <update id="updateProductState">
+   
+   		update product set state=#{0},updatetime=now()  where id =#{1}
+   </update>
+    
+    <select id="queryAddr" resultType="com.lakala.ls.ms.domain.Product">
+    	select id,name as productName,categoryid,title as productTitle,description,score,level,loadaddr as addr,
+    	state,version from product where id =#{0} and type=#{1}
+    </select>
+    
+    
+     <select id="queryUserProducts"   resultMap="productResult">
+	 select * from product order by rank ;
+      </select>
+    
+     <select id="queryProductsByMerchantId"   resultMap="productResult">
+	 select * from product where merchantid=#{merchantId} order by updatetime desc; 
+      </select>
+    
+    <select id="queryProductsByName" resultMap="productResult">
+     select * from product  where  name like CONCAT('%',#{name},'%')  and state='1' 
+    </select>
+    
+    <select id="queryProductsByType" resultMap="productResult">
+    	
+    	  select b.*  from rankmanager a left JOIN product b on a.productid =b.id
+    	  where
+    	   a.type=#{type} 
+    	  and b.state='1'
+    	   ORDER BY  a.rank 
+    </select>
+    
+    
+    <select id="queryHotProducts"  resultMap="productResult">
+      select b.*  from rankmanager a left JOIN (
+    	select * from product c where c.categoryid in(
+    	select id from category where id=#{id}
+    	) and state='1'
+    	) b on a.productid =b.id
+    	  where
+    	   a.type='2' 
+    	  and b.state='1'
+    	   ORDER BY  a.rank 
+    
+    </select>
+    <select id="queryProById" resultType="com.lakala.ls.ms.domain.Product">
+    	SELECT * from product where id =#{id}
+    </select>
+    
+    <delete id ="deleteProd">
+    	delete from product where id =#{id}
+    </delete>
+    
+    
+</mapper>

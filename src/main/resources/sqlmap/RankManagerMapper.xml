@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.RankManagerMapper">
+
+    <resultMap id="cateResult" type="com.lakala.ls.ms.domain.RankManager">
+        <result property="id" column="id" />
+        <result property="type" column="type" />
+        <result property="rank" column="rank" />
+        <result property="productid" column="productid" />
+        <result property="productname" column="name" />
+        <result property="createtime" column="createtime" />
+        <result property="updatetime" column="updatetime" />
+    </resultMap>
+
+	 <select id="queryRanks"   resultMap="cateResult">
+        select a.*,b.name  from rankmanager a left JOIN product b on a.productid =b.id ORDER BY  a.rank 
+    </select>
+
+
+    <insert id="addRank" parameterType="com.lakala.ls.ms.domain.RankManager">
+        insert into rankmanager (
+        type,
+       	rank,
+       	productid,
+       	productname,
+        createtime,
+        updatetime
+        )values (
+        #{type},
+        #{rank},
+        #{productid},
+        #{productname},
+        now(),
+        now()
+         )
+    </insert>
+    
+     <update id="updateRank" parameterType="com.lakala.ls.ms.domain.RankManager">
+	    update rankmanager 
+		<set>
+		 <if test="type != null and type != ''">type = #{type},</if>
+		 <if test="rank != null and rank != ''">rank = #{rank},</if>
+		 <if test="productid != null and productid != ''">productid = #{productid},</if>
+         updatetime = now()
+		</set>
+		where id = #{id}
+	</update>
+    
+    
+    
+     <delete id="deleteRank">
+    	delete from  rankmanager where id=#{id}
+    </delete>
+      <delete id="deleteRankByProductid">
+    	delete from  rankmanager where productid=#{productid}
+    </delete>
+    
+</mapper>

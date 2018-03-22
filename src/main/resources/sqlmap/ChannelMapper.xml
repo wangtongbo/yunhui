@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.ChannelMapper">
+
+    <select id="queryChannels" resultType="com.lakala.ls.ms.domain.Channel">
+        select
+          id, name
+        from channel
+        order by id asc
+    </select>
+    
+    
+    
+    <resultMap id="channelResult" type="com.lakala.ls.ms.domain.Channel">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="parentId" column="parent_id" />
+        <result property="state" column="state" />
+        <result property="linkName" column="link_name" />
+        <result property="linkMobile" column="link_mobile" />
+        <result property="creditState" column="creditstate" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+	 <select id="queryChannel"   resultMap="channelResult">
+        select
+         id,
+        name,
+        parent_id,
+        state,
+        link_name,
+        link_mobile,
+        creditstate,
+        update_time
+        from channel
+        order by create_time desc
+    </select>
+
+
+    <insert id="saveChannel" parameterType="com.lakala.ls.ms.domain.Channel">
+        insert into channel (
+        id,
+        name,
+        parent_id,
+        state,
+        link_name,
+        link_mobile,
+        creditstate,
+        create_time,
+        update_time
+        )values (
+        #{id},
+        #{name},
+        #{parentId},
+        #{state},
+        #{linkName},
+        #{linkMobile},
+        #{creditState},
+        now(),
+        now()
+         )
+    </insert>
+    
+    
+    <insert id="addChannelProduct" parameterType="com.lakala.ls.ms.domain.ChannelProduct">
+      insert into channel_product (product_id,channel_id,state)values(#{productId},#{channelId},#{state})
+    
+    </insert>
+    
+    <insert id="addChannelProductS" parameterType="java.util.ArrayList">
+        insert into channel_product (product_id,channel_id,state)
+        values
+        <foreach collection="list" item="record" index="index" separator=",">
+            (
+            #{record.productId},
+      	   #{record.channelId},
+            #{record.state}
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+         product_id = VALUES(product_id),  
+         channel_id = VALUES(channel_id)  
+    </insert>
+    
+    
+    <resultMap id="channelProductResult" type="com.lakala.ls.ms.domain.ChannelProduct">
+        <result property="channelId" column="channel_id" />
+        <result property="productId" column="product_id" />
+        <result property="state" column="state" />
+    </resultMap>
+
+	 <select id="queryChannelProducts"   resultMap="channelProductResult">
+        select
+        channel_id,product_id,state
+        from channel_product
+        where channel_id=#{channelid}
+    </select>
+    
+    <update id="updateChannelState">
+    update channel set state=#{1},update_time=now() where id=#{0}
+    </update>
+    
+    
+     <resultMap id="prodInfoResult" type="com.lakala.ls.ms.domain.ChannelProductInfo">
+        <result property="channelId" column="channel_id" />
+        <result property="productId" column="product_id" />
+        <result property="merchantId" column="merchant_id" />
+        <result property="rate" column="rate" />
+        <result property="productName" column="name" />
+        <result property="merchantName" column="merchantname" />
+    </resultMap>
+
+	 <select id="queryPrductInfo"   resultMap="prodInfoResult">
+	 
+		select t.*, m.name  as merchantname from merchant m RIGHT JOIN (
+			select a.channel_id ,a.product_id,b.rate ,c.name ,c.merchant_id from channel_product a LEFT JOIN channel_share_benefit b on a.product_id=b.product_id and a.channel_id=b.channel_id
+		
+			LEFT JOIN product c on a.product_id=c.id
+		
+			where a.channel_id= #{channelid}
+		)t on m.id=t.merchant_id
+		 
+
+    </select>
+    
+    
+    <delete id="deleteChannel">
+    	delete from  channel where id=#{channelid}
+    </delete>
+    
+     <delete id="deleteChannelProduct">
+    	delete from  channel_product where channel_id=#{channelid}
+    </delete>
+    
+    <update id="updateChannel" parameterType="com.lakala.ls.ms.domain.Channel">
+    update channel set name=#{name},link_mobile=#{linkMobile},link_name=#{linkName},update_time=now() where id=#{id}
+    </update>
+    
+</mapper>

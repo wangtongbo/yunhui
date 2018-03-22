@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.RoleMapper">
+
+    <resultMap id="roleResult" type="com.lakala.ls.ms.domain.Role">
+        <result property="name" column="tellername" />
+        <result property="code" column="rolecode" />
+        <result property="id" column="roleId" />
+    </resultMap>
+
+    <select id="getAllRoles" resultMap="roleResult">
+        select id, name, rolecode from role order by id asc
+    </select>
+
+    <select id="getByUserId"  parameterType="java.lang.Long" resultMap="roleResult">
+        select a.name, a.rolecode from role a,tellerrole b
+        where a.id = b.roleid and b.tellerid = #{userId}
+    </select>
+
+    <insert id="saveUserRole" parameterType="map">
+        insert into tellerrole (tellerid,roleid) values ((select id from teller where tellername=#{userName}),
+          (select id from role where rolecode=#{role})
+        )
+    </insert>
+    
+    <delete id="deleteUserRole" parameterType="map">
+        delete from tellerrole where tellerid = (select id from teller where tellername=#{userName})
+    </delete>
+    
+</mapper>

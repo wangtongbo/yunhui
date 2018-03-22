@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.CheckClearMerchantMapper">
+
+    <insert id="saveCheckClearMerchantList" parameterType="java.util.HashMap">
+        insert ignore into check_clear_merchant (loan_no, clear_date, merchant_id, product_id, channel_id, user_id, merchant_user_id, loan_amount,
+          phased_repay_unit, phased_repay_period, repay_interest, merchant_user_register_time, apply_time, approve_time,
+          loan_time, create_time, share_benefit_rate, share_benefit_amount)
+        values
+        <foreach collection="checkClearList" item="record" index="index" separator=",">
+            (
+            #{record.loanNo},
+            #{record.clearDate},
+            #{record.merchantId},
+            #{record.productId},
+            #{record.channelId},
+            #{record.userId},
+            #{record.merchantUserId},
+            #{record.loanAmount},
+            #{record.phasedRepayUnit},
+            #{record.phasedRepayPeriod},
+            #{record.repayInterest},
+            #{record.merchantUserRegisterTime},
+            #{record.applyTime},
+            #{record.approveTime},
+            #{record.loanTime},
+            now(),
+            #{record.merchartShareBenefitRate},
+            #{record.merchartShareBenefitAmount})
+        </foreach>
+    </insert>
+
+    <select id="queryCheckClearMerchantList" parameterType="com.lakala.ls.ms.domain.UserLoanApply"
+            resultType="com.lakala.ls.ms.dto.CheckLoanApplyDTO">
+        select
+            t1.loan_no as loanNo,
+            t1.merchant_id as merchantId,
+            t1.product_id as productId,
+            t1.channel_id as channelId,
+            t1.user_id as userId,
+            t1.merchant_user_id as merchantUserId,
+            t1.loan_amount as loanAmount,
+            t1.phased_repay_unit as phasedRepayUnit,
+            t1.phased_repay_period as phasedRepayPeriod,
+            t1.repay_interest as repayInterest,
+            t1.merchant_user_register_time as merchantUserRegisterTime,
+            t1.apply_time as applyTime,
+            t1.approve_time as approveTime,
+            t1.loan_time as loanTime,
+            t1.create_time as createTime,
+            t1.share_benefit_rate as merchantShareBenefitRate,
+            t1.share_benefit_amount as merchantShareBenefitAmount,
+            t2.name as merchantName,
+            t3.name as productName,
+            t4.mobile,
+            t4.identifier,
+            t6.name as channelName
+        from check_clear_merchant t1,
+            merchant t2,
+            product t3,
+            user t4,
+            channel t6
+        where t1.merchant_id = t2.id
+        and t1.product_id = t3.id
+        and t1.user_id = t4.id
+        and t1.channel_id = t6.id
+        <if test="merchantId != null and merchantId != ''">
+            and t1.merchant_id = #{merchantId}
+        </if>
+        <if test="productId != null and productId != ''">
+            and t1.product_id = #{productId}
+        </if>
+        <if test="channelId != null and channelId != ''">
+            and t6.id = #{channelId}
+        </if>
+        and t1.create_time BETWEEN #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        order by t1.apply_time asc, t1.approve_time asc, t1.loan_time asc
+        <if test="pageSize > 0">
+            limit #{pageIndex}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="queryCheckClearMerchantCount" parameterType="com.lakala.ls.ms.domain.UserLoanApply"
+            resultType="java.lang.Integer">
+        select
+          count(0)
+        from check_clear_merchant t1,
+        merchant t2,
+        product t3,
+        user t4,
+        channel t6
+        where t1.merchant_id = t2.id
+        and t1.product_id = t3.id
+        and t1.user_id = t4.id
+        and t1.channel_id = t6.id
+        <if test="merchantId != null and merchantId != ''">
+            and t1.merchant_id = #{merchantId}
+        </if>
+        <if test="productId != null and productId != ''">
+            and t1.product_id = #{productId}
+        </if>
+        <if test="channelId != null and channelId != ''">
+            and t6.id = #{channelId}
+        </if>
+        and t1.create_time BETWEEN #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+    </select>
+
+</mapper>

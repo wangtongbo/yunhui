@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.MerchantProductBenefitMapper">
+
+
+    
+    <insert id="addMPBenefitRule" parameterType="com.lakala.ls.ms.domain.MPBenefitRule">
+        insert into merchant_share_benefit_rule (
+        id,
+        min_value,
+        max_value,
+        first_rate,
+        rate,
+        merchant_id,
+        product_id,
+        create_time,
+        update_time
+        )values (
+        #{id},
+        #{mix},
+        #{max},
+        #{firstRate},
+        #{rate},
+        #{merchantId},
+        #{productId},
+        now(),
+        now()
+         )
+    </insert>
+       <insert id="addMPBenefitRules" parameterType="java.util.ArrayList">
+        insert into merchant_share_benefit_rule ( id,
+        min_value,
+        max_value,
+        first_rate,
+        rate,
+        merchant_id,
+        product_id,
+        create_time,
+        update_time)
+        values
+        <foreach collection="list" item="record" index="index" separator=",">
+            (
+           #{record.id},
+        #{record.mix},
+        #{record.max},
+        #{record.firstRate},
+        #{record.rate},
+        #{record.merchantId},
+        #{record.productId},
+        now(),
+        now()
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+         id = VALUES(id)
+    </insert>
+    
+    
+    
+    <resultMap id="beneftisResult" type="com.lakala.ls.ms.domain.MPBenefitRule">
+        <result property="productId" column="product_id" />
+        <result property="merchantId" column="merchant_id" />
+        <result property="mix" column="min_value" />
+        <result property="max" column="max_value" />
+        <result property="firstRate" column="first_rate" />
+        <result property="rate" column="rate" />
+        <result property="productName" column="name" />
+    </resultMap>
+
+	 <select id="queryMerchantBenefits"   resultMap="beneftisResult">
+	 SELECT a.*,b.name from merchant_share_benefit_rule a LEFT JOIN product b on a.product_id=b.id
+	 where a.product_id=#{0} and a.merchant_id=#{1}
+	 </select>
+
+
+	<delete id="deleteMPBenefit">
+		delete from merchant_share_benefit where  product_id=#{0} and merchant_id=#{1}
+	</delete>    
+	<delete id="deleteMPBenefitRules">
+		delete from merchant_share_benefit_rule where  product_id=#{0} and merchant_id=#{1}
+	</delete>   
+</mapper>

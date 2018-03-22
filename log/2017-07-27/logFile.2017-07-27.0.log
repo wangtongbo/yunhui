@@ -1,0 +1,171 @@
+2017-07-27 08:35:56.893 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/content/queryUserConts]
+2017-07-27 08:35:56.898 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryUserProducts]
+2017-07-27 08:35:56.903 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /content/queryUserConts
+2017-07-27 08:35:56.903 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryUserProducts
+2017-07-27 08:35:56.904 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.lakala.ls.ms.domain.AppContent> com.lakala.ls.ms.controller.AppContentController.queryUserConts(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:35:56.905 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:35:56.906 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.lakala.ls.ms.domain.Product> com.lakala.ls.ms.controller.ProductContoller.queryUserProducts(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:35:56.906 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:35:56.906 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:35:56.906 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===12
+2017-07-27 08:35:56.906 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:35:56.907 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:35:56.908 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===12
+2017-07-27 08:35:56.908 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://localhost:8080
+2017-07-27 08:35:56.909 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+2017-07-27 08:35:56.908 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:35:56.909 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:35:56.909 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://localhost:8080
+2017-07-27 08:35:56.911 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://localhost:8080/
+2017-07-27 08:35:56.911 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+2017-07-27 08:35:56.911 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:35:56.911 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:35:56.911 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:35:56.911 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://localhost:8080/
+2017-07-27 08:35:56.911 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:35:56.911 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:35:56.912 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:35:56.912 [http-nio-8091-exec-10] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:35:56.912 [http-nio-8091-exec-10] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:35:56.912 [http-nio-8091-exec-9] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:35:56.915 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:35:56.913 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:35:57.030 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [[com.lakala.ls.ms.domain.AppContent@22582409, com.lakala.ls.ms.domain.AppContent@5be1451d, com.lakala.ls.ms.domain.AppContent@505a6f83]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:35:57.030 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:35:57.030 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:35:57.034 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [[com.lakala.ls.ms.domain.Product@225ea68d, com.lakala.ls.ms.domain.Product@39750589, com.lakala.ls.ms.domain.Product@5a76b0d4, com.lakala.ls.ms.domain.Product@6898b23c, com.lakala.ls.ms.domain.Product@3fa51b6c, com.lakala.ls.ms.domain.Product@2e6d085c, com.lakala.ls.ms.domain.Product@4172fd55, com.lakala.ls.ms.domain.Product@6cd6ae15]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:35:57.034 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:35:57.034 [http-nio-8091-exec-10] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:36:36.627 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryAddr]
+2017-07-27 08:36:36.627 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryAddr
+2017-07-27 08:36:36.627 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.lang.String com.lakala.ls.ms.controller.ProductContoller.queryAddr(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===44
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://localhost:8080
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Mobile Safari/537.36
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://localhost:8080/
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:36:36.628 [http-nio-8091-exec-6] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:36:36.637 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:36:36.676 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [http://otdvvsat3.bkt.clouddn.com/com.tencent.mobileqq.yunhui.apk] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@6227a6de]
+2017-07-27 08:36:36.676 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:36:36.676 [http-nio-8091-exec-6] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:39:15.900 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/content/queryUserConts]
+2017-07-27 08:39:15.901 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /content/queryUserConts
+2017-07-27 08:39:15.901 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.lakala.ls.ms.domain.AppContent> com.lakala.ls.ms.controller.AppContentController.queryUserConts(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:39:15.902 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:39:15.902 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryUserProducts]
+2017-07-27 08:39:15.902 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:39:15.902 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryUserProducts
+2017-07-27 08:39:15.904 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===12
+2017-07-27 08:39:15.913 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:39:15.913 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://101.201.237.67
+2017-07-27 08:39:15.914 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+2017-07-27 08:39:15.914 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.lakala.ls.ms.domain.Product> com.lakala.ls.ms.controller.ProductContoller.queryUserProducts(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:39:15.914 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:39:15.915 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:39:15.917 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://101.201.237.67/los/static/
+2017-07-27 08:39:15.917 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:39:15.917 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:39:15.917 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===12
+2017-07-27 08:39:15.917 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:39:15.917 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:39:15.917 [http-nio-8091-exec-2] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:39:15.918 [http-nio-8091-exec-2] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:39:15.917 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://101.201.237.67
+2017-07-27 08:39:15.918 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:15.918 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+2017-07-27 08:39:15.918 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:39:15.918 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://101.201.237.67/los/static/
+2017-07-27 08:39:15.919 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:39:15.919 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:39:15.919 [http-nio-8091-exec-1] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:39:15.919 [http-nio-8091-exec-1] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:39:15.919 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:16.018 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [[com.lakala.ls.ms.domain.AppContent@1e6b8d4f, com.lakala.ls.ms.domain.AppContent@31fdc3b, com.lakala.ls.ms.domain.AppContent@64607f42]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:16.018 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:39:16.018 [http-nio-8091-exec-2] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:39:16.031 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [[com.lakala.ls.ms.domain.Product@d685401, com.lakala.ls.ms.domain.Product@13070f0f, com.lakala.ls.ms.domain.Product@36fdf007, com.lakala.ls.ms.domain.Product@24ac7a91, com.lakala.ls.ms.domain.Product@6babfa59, com.lakala.ls.ms.domain.Product@40ffff54, com.lakala.ls.ms.domain.Product@195b4284, com.lakala.ls.ms.domain.Product@5ee4dbcc]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:16.031 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:39:16.033 [http-nio-8091-exec-1] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:39:19.009 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryAddr]
+2017-07-27 08:39:19.009 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryAddr
+2017-07-27 08:39:19.009 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.lang.String com.lakala.ls.ms.controller.ProductContoller.queryAddr(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===44
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://101.201.237.67
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Mobile Safari/537.36
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://101.201.237.67/los/static/
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:39:19.010 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:19.033 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [http://otdvvsat3.bkt.clouddn.com/com.tencent.mobileqq.yunhui.apk] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@6227a6de]
+2017-07-27 08:39:19.033 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:39:19.033 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:39:24.223 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryAddr]
+2017-07-27 08:39:24.223 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryAddr
+2017-07-27 08:39:24.223 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.lang.String com.lakala.ls.ms.controller.ProductContoller.queryAddr(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:39:24.223 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===43
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://101.201.237.67
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Mobile Safari/537.36
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://101.201.237.67/los/static/
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:39:24.224 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:24.248 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [http://otdvvsat3.bkt.clouddn.com/com.immomo.momo.yunhui.apk] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@6227a6de]
+2017-07-27 08:39:24.248 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:39:24.248 [http-nio-8091-exec-9] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:39:42.024 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryAddr]
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryAddr
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.lang.String com.lakala.ls.ms.controller.ProductContoller.queryAddr(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===43
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://101.201.237.67
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Mobile Safari/537.36
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://101.201.237.67/los/static/
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:39:42.025 [http-nio-8091-exec-5] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:39:42.026 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:39:42.044 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [http://otdvvsat3.bkt.clouddn.com/com.qzone.yunhui.apk] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@6227a6de]
+2017-07-27 08:39:42.045 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:39:42.045 [http-nio-8091-exec-5] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+2017-07-27 08:45:25.163 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing POST request for [/loms/product/queryAddr]
+2017-07-27 08:45:25.164 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /product/queryAddr
+2017-07-27 08:45:25.164 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public java.lang.String com.lakala.ls.ms.controller.ProductContoller.queryAddr(java.util.Map) throws com.lakala.ls.LsException]
+2017-07-27 08:45:25.164 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - host===localhost:8091
+2017-07-27 08:45:25.164 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - connection===keep-alive
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - content-length===44
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept===application/json, text/plain, */*
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - origin===http://localhost:8080
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - user-agent===Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Mobile Safari/537.36
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - content-type===application/json;charset=UTF-8
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - referer===http://localhost:8080/
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-encoding===gzip, deflate, br
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - accept-language===zh-CN,zh;q=0.8
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] INFO    com.lakala.ls.ms.config.UserInterceptor - 0:0:0:0:0:0:0:1
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] DEBUG   org.springframework.web.cors.DefaultCorsProcessor - Skip CORS processing: response already contains "Access-Control-Allow-Origin" header
+2017-07-27 08:45:25.165 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Read [interface java.util.Map] as "application/json;charset=UTF-8" with [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@3184b37b]
+2017-07-27 08:45:25.259 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - Written [http://otdvvsat3.bkt.clouddn.com/com.tencent.mobileqq.yunhui.apk] as "application/json" using [org.springframework.http.converter.StringHttpMessageConverter@6227a6de]
+2017-07-27 08:45:25.259 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-07-27 08:45:25.260 [http-nio-8091-exec-3] DEBUG   org.springframework.web.servlet.DispatcherServlet - Successfully completed request

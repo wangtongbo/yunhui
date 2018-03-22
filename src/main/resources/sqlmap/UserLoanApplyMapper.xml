@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.UserLoanApplyMapper">
+
+    <select id="queryUserLoanApplyList" parameterType="com.lakala.ls.ms.domain.UserLoanApply"
+            resultType="com.lakala.ls.ms.dto.UserLoanApplyDTO">
+        select
+            t2.name as merchantName,
+            t3.name as productName,
+            t1.user_id as userId,
+            t4.mobile,
+            t4.identifier,
+            t1.loan_no as loanNo,
+            t1.merchant_user_id as merchantUserId,
+            t1.state,
+            t1.refuse_reason as refuseReason,
+            t1.loan_amount as loanAmount,
+            t1.phased_repay_unit as phasedRepayUnit,
+            t1.phased_repay_period as phasedRepayPeriod,
+            t1.repay_interest as repayInterest,
+            t1.merchant_user_register_time as merchantUserRegisterTime,
+            t1.apply_time as applyTime,
+            t1.approve_time as approveTime,
+            t1.loan_time as loanTime,
+            t6.name as channelName
+        from user_loan_apply t1,
+          merchant t2,
+          product t3,
+          user t4,
+          channel t6
+        where t1.merchant_id = t2.id
+            and t1.product_id = t3.id
+            and t1.user_id = t4.id
+            and t1.channel_id = t6.id
+            <if test="merchantId != null and merchantId != ''">
+                and t1.merchant_id = #{merchantId}
+            </if>
+            <if test="productId != null and productId != ''">
+                and t1.product_id = #{productId}
+            </if>
+            <if test="state != null and state != ''">
+                and t1.state = #{state}
+            </if>
+            <if test="channelId != null and channelId != ''">
+                and t6.id = #{channelId}
+            </if>
+            and t1.create_time BETWEEN #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        order by t1.apply_time asc, t1.approve_time asc, t1.loan_time asc
+        <if test="pageSize > 0">
+            limit #{pageIndex}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="queryUserLoanApplyCount" parameterType="com.lakala.ls.ms.domain.UserLoanApply"
+            resultType="java.lang.Integer">
+        select
+            count(0)
+        from user_loan_apply t1,
+        merchant t2,
+        product t3,
+        user t4,
+        channel t6
+        where t1.merchant_id = t2.id
+        and t1.product_id = t3.id
+        and t1.user_id = t4.id
+        and t1.channel_id = t6.id
+        <if test="merchantId != null and merchantId != ''">
+            and t1.merchant_id = #{merchantId}
+        </if>
+        <if test="productId != null and productId != ''">
+            and t1.product_id = #{productId}
+        </if>
+        <if test="state != null and state != ''">
+            and t1.state = #{state}
+        </if>
+        <if test="channelId != null and channelId != ''">
+            and t6.id = #{channelId}
+        </if>
+        and t1.create_time BETWEEN #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+    </select>
+
+    <insert id="saveUserLoanApplyList" parameterType="java.util.ArrayList">
+        insert into user_loan_apply (user_id, product_id, channel_id, merchant_id, loan_no, apply_amount, apply_time, loan_usage,
+          loan_rate, loan_amount, loan_time, repay_mode, phased_repay_period, phased_repay_unit, phased_repay_amount, repay_amount, state,
+          refuse_reason, merchant_user_id, merchant_user_register_time, approve_time, repay_interest,
+          first_success_loan_flag,
+          create_time)
+        values
+        <foreach collection="loanList" item="record" index="index" separator=",">
+            (
+            <if test="record.userId != null and record.userId != ''">
+                #{record.userId},
+            </if>
+            <if test="record.userId == null">
+                (select id from user where mobile = #{record.mobile}),
+            </if>
+            #{record.productId},
+            (select t1.channel_id from channel_user t1, user t2
+              where t1.user_id = t2.id
+                and (t2.mobile = #{record.mobile} or t2.id = #{record.userId})
+              having MIN(t1.create_time)),
+            #{record.merchantId},
+            #{record.loanNo},
+            #{record.applyAmount},
+            #{record.applyTime},
+            #{record.loanUsage},
+            #{record.loanRate},
+            #{record.loanAmount},
+            #{record.loanTime},
+            #{record.repayMode},
+            #{record.phasedRepayPeriod},
+            #{record.phasedRepayUnit},
+            #{record.phasedRepayAmount},
+            #{record.repayAmount},
+            #{record.state},
+            #{record.refuseReason},
+            #{record.merchantUserId},
+            #{record.merchantUserRegisterTime},
+            #{record.approveTime},
+            #{record.repayInterest},
+            <if test='record.state == "2"'>
+                (select if(count(0) > 0, '0', '1') from user_loan_apply t1 where t1.product_id = #{record.productId} and t1.user_id = #{record.userId} and t1.state = '2'),
+            </if>
+            <if test='record.state != "2"'>
+              null,
+            </if>
+            now())
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+            state = VALUES(state),
+            repay_amount = VALUES(repay_amount),
+            loan_amount = VALUES(loan_amount),
+            loan_time = VALUES(loan_time),
+            refuse_reason = VALUES(refuse_reason)
+    </insert>
+
+    <select id="queryMerchantProduct" resultType="com.lakala.ls.ms.dto.MerchantDTO">
+        select
+          t2.id as merchantId, t3.id as productId,
+          t2.name as merchantName, t3.name as productName
+        from merchant t2, product t3
+        where t2.id = t3.merchant_id
+        order by t2.id asc, t3.id asc
+    </select>
+
+    <select id="queryUserInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select id as userId, mobile
+        from user where 1 = 1
+        <if test="userId != null and userId != ''">
+            and id = #{userId}
+        </if>
+        <if test="mobile != null and mobile != ''">
+            and mobile = #{mobile}
+        </if>
+    </select>
+
+</mapper>

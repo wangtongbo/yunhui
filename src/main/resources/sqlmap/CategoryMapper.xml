@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lakala.ls.ms.mapper.CategoryMapper">
+
+    <resultMap id="cateResult" type="com.lakala.ls.ms.domain.Category">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="type" column="type" />
+        <result property="addr" column="addr" />
+        <result property="createTime" column="createtime" />
+        <result property="updateTime" column="updatetime" />
+    </resultMap>
+
+	 <select id="queryCategorys"   resultMap="cateResult">
+        select * from category order by createtime desc
+    </select>
+		<select id="queryCategorysById" resultMap="cateResult">
+		
+			select * from category where parentid=#{id}
+		</select>
+
+
+    <insert id="addCategory" parameterType="com.lakala.ls.ms.domain.Category">
+        insert into category (
+        name,
+       	type,
+       	addr,
+        createtime,
+        updatetime
+        )values (
+        #{name},
+        #{type},
+        #{addr},
+        now(),
+        now()
+         )
+    </insert>
+   
+    
+    
+    <delete id="deleteCategory">
+    	delete from  category where id=#{id}
+    </delete>
+    
+    <select id="queryHotCategorys" resultMap="cateResult">
+ 	   select * from category where type='1'
+    </select>
+    
+</mapper>

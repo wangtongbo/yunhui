@@ -1,0 +1,69 @@
+buildscript {
+	ext {
+		springboot = "1.4.0.RELEASE"
+		mybatis = "1.1.1"
+		springsession = "1.2.1.RELEASE"
+		mysql = "5.1.39"
+		gson = "2.8.0"
+		poiVersion = "3.13"
+	}
+	repositories {
+		maven {
+			name "maven central"
+			url "http://10.5.31.12:8081/nexus/content/repositories/central/"
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springboot}")
+		classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+compileJava {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+}
+
+compileTestJava {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+}
+jar {
+	baseName = 'com.lakala.sp.ms.web'
+	version = '0.0.1-SNAPSHOT'
+}
+configurations {
+	all*.exclude group: 'javax.servlet', module: 'javax.servlet-api'
+	all*.exclude group: 'org.eclipse.jetty.orbit', module: 'javax.servlet'
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-security:$springboot")
+	compile("org.springframework.boot:spring-boot-starter-web:$springboot")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatis")
+
+	compile("org.springframework.session:spring-session:$springsession")
+	compile("org.springframework.boot:spring-boot-starter-data-redis:$springboot")
+
+	compile "org.apache.poi:poi-ooxml:$poiVersion"
+
+	compile group: "com.google.code.gson", name: "gson", version: "${gson}"
+
+	runtime("mysql:mysql-connector-java:$mysql")
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+repositories {
+	maven {
+		name "maven central"
+		url "http://10.5.31.12:8081/nexus/content/repositories/central/"
+	}
+	maven {
+		name "amber repo"
+		url "http://10.5.31.12:8081/nexus/content/repositories/releases/"
+	}
+}
